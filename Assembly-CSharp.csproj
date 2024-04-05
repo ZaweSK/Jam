@@ -45,17 +45,9 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Components/FirstPersonAudio.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Jump.cs" />
-    <Compile Include="Assets/Game.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Movement.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Crouch.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Components/GroundCheck.cs" />
-    <Compile Include="Assets/Test.cs" />
-    <Compile Include="Assets/Scenes/Scripts/PlaneRotator.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Zoom.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/FirstPersonMovement.cs" />
-    <Compile Include="Assets/Mini First Person Controller/Scripts/FirstPersonLook.cs" />
+    <Compile Include="Assets/Game/Scripts/Game.cs" />
+    <Compile Include="Assets/Game/Scripts/Movement.cs" />
+    <Compile Include="Assets/Game/Scripts/PlaneRotator.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -757,6 +749,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{ae0da93a-0f0a-7a05-8546-77e4315903b4}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
