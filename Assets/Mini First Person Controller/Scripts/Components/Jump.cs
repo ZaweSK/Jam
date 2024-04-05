@@ -18,17 +18,16 @@ public class Jump : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log($"{GetType().Name} Initialized");
         // Get rigidbody.
         rigidbody = GetComponent<Rigidbody>();
     }
 
     void LateUpdate()
     {
-        Debug.Log($"XXX LATE");
         // Jump when the Jump button is pressed and we are on the ground.
         if (Input.GetButtonDown("Jump") && (!groundCheck || groundCheck.isGrounded))
         {
-            Debug.Log($"XXX JUMP");
             rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
             Jumped?.Invoke();
         }

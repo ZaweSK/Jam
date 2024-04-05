@@ -35,10 +35,20 @@ public class FirstPersonMovement : MonoBehaviour
             targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
         }
 
+        Debug.Log($"XXX  ---------------- ");
+        Debug.Log($"XXX INPUT HORIZONTAL {Input.GetAxis("Horizontal")}");
+        Debug.Log($"XXX INPUT VERTICAL {Input.GetAxis("Vertical")}");
+        
         // Get targetVelocity from input.
         Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        
+        Debug.Log($"XXX TARGET VELOCITY {targetVelocity}");
+        Debug.Log($"XXX ROTATION: {transform.rotation}");
+        
+        var result = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+        Debug.Log($"XXX APPLYING: {targetVelocity} * {transform.rotation} = {result}");
 
         // Apply movement.
-        rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+        rigidbody.velocity = result;
     }
 }

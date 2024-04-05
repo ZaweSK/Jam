@@ -47,9 +47,12 @@
   <ItemGroup>
     <Compile Include="Assets/Mini First Person Controller/Scripts/Components/FirstPersonAudio.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Jump.cs" />
+    <Compile Include="Assets/Game.cs" />
+    <Compile Include="Assets/Mini First Person Controller/Scripts/Movement.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Crouch.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/Components/GroundCheck.cs" />
     <Compile Include="Assets/Test.cs" />
+    <Compile Include="Assets/Scenes/Scripts/PlaneRotator.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/Components/Zoom.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/FirstPersonMovement.cs" />
     <Compile Include="Assets/Mini First Person Controller/Scripts/FirstPersonLook.cs" />
