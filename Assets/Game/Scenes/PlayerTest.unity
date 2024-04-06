@@ -1206,12 +1206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68c354a4881b42db9d4a89f42b8a025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InvertKeys: 0
-  RotateWorld: 0
-  RotateValue: 0.004
-  RotatePlayerAlways: 1
-  RotatePlayerWhenMoving: 0
-  PlayerRotationValue: 0.1
+  ZmenTlacitka: 1
+  VariantZmenyTlacitok: 0
+  ZmenTlacitkaKedStojis: 0
+  ZmenTlacitkaPoCase: 1
+  TocenieHlavy: 1
+  AkoMocTaToci: 0.005
+  DlzkaJednohoTocenia: 1
+  ZanasanieDoStrany: 0
+  AkoMocTaZanasa: 0.5
+  DlzkaJednehoZanosuDoStrany: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class FirstPersonLook : MonoBehaviour
             }
         
             _directionTimer += Time.deltaTime;
-            if (_directionTimer >= _directionDuration) {
+            if (_directionTimer >= Game.Instance.DlzkaJednohoTocenia) {
                 _directionTimer = 0f;
             
 

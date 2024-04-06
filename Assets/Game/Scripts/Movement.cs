@@ -18,7 +18,8 @@ public class Movement : MonoBehaviour  {
 
     private bool _phase = false;
     
-
+    private int _currentKeysVariant = 0;
+    
     void Awake()
     {
         // Get the rigidbody on this.
@@ -26,6 +27,8 @@ public class Movement : MonoBehaviour  {
     }
     
         private float _currentDuration = 0f;
+        private bool _readyToSwitch;
+        private float _switchMappingCurrentDuration;
     
     void FixedUpdate()
     {
@@ -41,17 +44,34 @@ public class Movement : MonoBehaviour  {
 
         
         // ====================================================================== 
-        // Debug.Log($"XXX  ---------------- ");
-        // Debug.Log($"XXX INPUT HORIZONTAL {Input.GetAxis("Horizontal")}");
-        // Debug.Log($"XXX INPUT VERTICAL {Input.GetAxis("Vertical")}");
-        //
-        // if (Game.Instance.RotatePlayerAlways) {
-        //     transform.Rotate(0, Game.Instance.PlayerRotationValue, 0);
-        // }
-        
-        
+
         var inputHorizontal = Input.GetAxis("Horizontal"); // Dolava / doprava
-        var inputVertical = Input.GetAxis("Vertical"); // Dopredu/ dozadu
+        var inputVertical = Input.GetAxis("Vertical");
+
+        if (Game.Instance.ZmenTlacitkaKedStojis) {
+            if (inputVertical == 0 && inputHorizontal == 0) {
+                _readyToSwitch = true;
+            }
+            else {
+                if (_readyToSwitch) {
+                    var variant = Random.Range(5, 9);
+                    _currentKeysVariant = variant;
+                    Debug.Log($"XXX SWITCH TO {variant}");
+                    _readyToSwitch = false;
+                }
+            }
+        }
+
+        if (Game.Instance.ZmenTlacitkaPoCase > 0) {
+            _switchMappingCurrentDuration += Time.deltaTime;
+            if (_switchMappingCurrentDuration >= Game.Instance.ZmenTlacitkaPoCase) {
+                var variant = Random.Range(0, 9);
+                _currentKeysVariant = variant;
+                Debug.Log($"XXX SWITCH TO {variant}");
+                _switchMappingCurrentDuration = 0f;
+            }
+        }
+       
         
         if (Game.Instance.ZanasanieDoStrany) {
             if (inputVertical == 0) {
@@ -89,39 +109,86 @@ public class Movement : MonoBehaviour  {
         
         var targetVelocity =new Vector2( horizontalVelocity, verticalVelocity);
         
-        if (Game.Instance.InvertKeys) {
-            targetVelocity = new Vector2(-targetVelocity.x, -targetVelocity.y);
+        if (Game.Instance.ZmenTlacitka) {
+            
+            if (Game.Instance.ZmenTlacitkaKedStojis || Game.Instance.ZmenTlacitkaPoCase > 0) {
+                targetVelocity = MapKeys(targetVelocity, _currentKeysVariant);
+            }
+            
+            
+            targetVelocity = MapKeys(targetVelocity, Game.Instance.VariantZmenyTlacitok);
         }
-        
-     
-        
 
-        
-        
-        // if (Game.Instance.RotatePlayerWhenMoving) {
-        //     rotation = Quaternion.Euler(0, Game.Instance.PlayerRotationValue, 0);
-        // }
-
-        // Quaternion constantRotation = Quaternion.Euler(0, 0.4F, 0);
-        //
-        // Debug.Log($"XXX Before applying {transform.rotation}");
-        // Debug.Log($"XXX rotation {constantRotation}");
-        // transform.rotation *= constantRotation;
-        //
-        // Debug.Log($"XXX After applying {transform.rotation}");
-        
-        
         var rotation = transform.rotation;
         var result = rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
         rigidbody.velocity = result;
-        
-        
-        // LOG 
-        // Debug.Log($"XXX INPUT HORIZONTAL {Input.GetAxis("Horizontal")}");
-        // Debug.Log($"XXX INPUT VERTICAL {Input.GetAxis("Vertical")}");
-        // Debug.Log($"XXX TARGET VELOCITY {targetVelocity}");
-        // Debug.Log($"XXX APPLYING: {targetVelocity} * {rotation} = {result}");
-
     }
-    
+
+    private Vector2 MapKeys(Vector2 baseVelocity, int variant) {
+        if (variant == 1) {
+            return new Vector2(-baseVelocity.x, -baseVelocity.y);
+        }
+        
+        if (variant == 2) {
+            return new Vector2(baseVelocity.y, -baseVelocity.x);
+            // return new Vector2(-baseVelocity.y, baseVelocity.x);
+        }
+        
+        if (variant == 3) {
+            var xValue = 0f;
+            var yValue = 0f;
+            if (baseVelocity.x > 0) {
+                xValue = -baseVelocity.x;
+            } else if (baseVelocity.x < 0) {
+                yValue = baseVelocity.x;
+            }
+            if (baseVelocity.y > 0) {
+                xValue = baseVelocity.y;
+            } else if (baseVelocity.y < 0) {
+                yValue = -baseVelocity.y;
+            }
+        
+            var final = new Vector2(xValue, yValue);
+            return final;
+        }
+
+        if (variant == 4) {
+            var xValue = 0f;
+            var yValue = 0f;
+            if (baseVelocity.x > 0) {
+                xValue = -baseVelocity.x;
+            } else if (baseVelocity.x < 0) {
+                xValue = -baseVelocity.x;
+            }
+            if (baseVelocity.y > 0) {
+                xValue = baseVelocity.y;
+            } else if (baseVelocity.y < 0) {
+                xValue = -baseVelocity.y;
+            }
+            
+            var final = new Vector2(xValue, yValue);
+            return final;
+        }
+
+        if (variant == 5) {
+            return baseVelocity;
+        }
+        
+        if (variant == 6) {
+            return new Vector2(-baseVelocity.y, baseVelocity.x);
+        }
+
+        if (variant == 7) {
+            return new Vector2(-baseVelocity.x, -baseVelocity.y);
+        }
+        
+        if (variant == 8) {
+            return new Vector2(baseVelocity.y, -baseVelocity.x);
+        }
+        
+        
+        
+
+        return baseVelocity;
+    }
 }

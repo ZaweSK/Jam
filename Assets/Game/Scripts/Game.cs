@@ -4,12 +4,19 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour {
-    [Space(10)] [Header("VELOCITY")] [SerializeField]
-    public bool InvertKeys = false;
-
+    [Header("TLACITKA")]
+    [SerializeField]
+    public bool ZmenTlacitka = false;
+ 
+    [SerializeField]
+    public int VariantZmenyTlacitok = 0;
     
+    [SerializeField]
+    public bool ZmenTlacitkaKedStojis = false;
 
-    [SerializeField] public float RotateValue = 0.04f;
+    [SerializeField] 
+    public float ZmenTlacitkaPoCase;
+    
 
     [Space(10)]
     [Header("TOCENIE HLAVY")]
