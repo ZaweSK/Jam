@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets/Game/Scripts/Game.cs" />
     <Compile Include="Assets/Game/Scripts/Movement.cs" />
+    <Compile Include="Assets/Game/Scripts/FirstPersonLook.cs" />
     <Compile Include="Assets/Game/Scripts/PlaneRotator.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

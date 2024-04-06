@@ -359,7 +359,6 @@
 "Assets/Plugins/Mini First Person Controller/Scripts/Components/GroundCheck.cs"
 "Assets/Plugins/Mini First Person Controller/Scripts/Components/Jump.cs"
 "Assets/Plugins/Mini First Person Controller/Scripts/Components/Zoom.cs"
-"Assets/Plugins/Mini First Person Controller/Scripts/FirstPersonLook.cs"
 "Assets/Plugins/Mini First Person Controller/Scripts/FirstPersonMovement.cs"
 -langversion:9.0
 

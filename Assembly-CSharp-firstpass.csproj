@@ -50,7 +50,6 @@
     <Compile Include="Assets/Plugins/Mini First Person Controller/Scripts/Components/Jump.cs" />
     <Compile Include="Assets/Plugins/Mini First Person Controller/Scripts/Components/GroundCheck.cs" />
     <Compile Include="Assets/Plugins/Mini First Person Controller/Scripts/Components/Zoom.cs" />
-    <Compile Include="Assets/Plugins/Mini First Person Controller/Scripts/FirstPersonLook.cs" />
     <Compile Include="Assets/Plugins/Mini First Person Controller/Scripts/Components/FirstPersonAudio.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

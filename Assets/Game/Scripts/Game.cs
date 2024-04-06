@@ -7,30 +7,37 @@ public class Game : MonoBehaviour {
     [Space(10)] [Header("VELOCITY")] [SerializeField]
     public bool InvertKeys = false;
 
-
-    [Space(10)] [Header("WORLD")] [SerializeField]
-    public bool RotateWorld = false;
+    
 
     [SerializeField] public float RotateValue = 0.04f;
 
     [Space(10)]
-    [Header("PLAYER ROTATION")]
+    [Header("TOCENIE HLAVY")]
     
     [SerializeField] 
-    public bool RotatePlayerAlways;
-    
-    [SerializeField] 
-    public bool RotatePlayerWhenMoving;
-    
+    public bool TocenieHlavy;
+
     [SerializeField]
-    public float PlayerRotationValue = 0.04f;
+    public float AkoMocTaToci = 0.01f;
+    
+    [SerializeField] 
+    public float DlzkaJednohoTocenia = 1f;
        
 
     [Space(10)]
-    [Header("PLAYER MOVEMENT")]
-        
-      
+    [Header("ZANASANIE DO STRANY")]
+    [SerializeField] 
+    public bool ZanasanieDoStrany;
 
+    [SerializeField]
+    public float AkoMocTaZanasa = 0.5f;
+    
+    [SerializeField] 
+    public float DlzkaJednehoZanosuDoStrany = 3f;
+    
+    
+    
+    
         private static Game _instance;
       
         private void Awake() {

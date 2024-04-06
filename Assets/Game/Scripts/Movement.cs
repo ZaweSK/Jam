@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour  {
     }
     
         private float _currentDuration = 0f;
-        private float _duration = 3f;
     
     void FixedUpdate()
     {
@@ -42,9 +41,9 @@ public class Movement : MonoBehaviour  {
 
         
         // ====================================================================== 
-        Debug.Log($"XXX  ---------------- ");
-        Debug.Log($"XXX INPUT HORIZONTAL {Input.GetAxis("Horizontal")}");
-        Debug.Log($"XXX INPUT VERTICAL {Input.GetAxis("Vertical")}");
+        // Debug.Log($"XXX  ---------------- ");
+        // Debug.Log($"XXX INPUT HORIZONTAL {Input.GetAxis("Horizontal")}");
+        // Debug.Log($"XXX INPUT VERTICAL {Input.GetAxis("Vertical")}");
         //
         // if (Game.Instance.RotatePlayerAlways) {
         //     transform.Rotate(0, Game.Instance.PlayerRotationValue, 0);
@@ -54,43 +53,36 @@ public class Movement : MonoBehaviour  {
         var inputHorizontal = Input.GetAxis("Horizontal"); // Dolava / doprava
         var inputVertical = Input.GetAxis("Vertical"); // Dopredu/ dozadu
         
-
-
-
-        if (inputVertical == 0) {
-            _currentDuration = 0f;
-        }
+        if (Game.Instance.ZanasanieDoStrany) {
+            if (inputVertical == 0) {
+                _currentDuration = 0f;
+            }
         
-        if (inputVertical != 0) {
+            if (inputVertical != 0) {
 
                 if (_phase) {
                     _currentDuration += Time.deltaTime;
-                 }
+                }
                 else {
                     _currentDuration -= Time.deltaTime;
                 }
                
-                var normalizedDuration = _currentDuration / _duration;
+                var normalizedDuration = _currentDuration / Game.Instance.DlzkaJednehoZanosuDoStrany;
                 
-            
-                
-                
-                float adjustedValue = Mathf.Lerp(-0.5f, 0.5f, normalizedDuration);
-                
-                
-                float pingPongValue = Mathf.PingPong(_currentDuration / _duration, 1f);
-                
-                Debug.Log($"XXX adjusted {adjustedValue}");
-                
+                float adjustedValue = Mathf.Lerp(-Game.Instance.AkoMocTaZanasa, Game.Instance.AkoMocTaZanasa, normalizedDuration);
                 inputHorizontal = Input.GetAxis("Horizontal") + adjustedValue;
-                
-                Debug.Log($"XXX after {inputHorizontal}");
-        
-                if  (normalizedDuration >= 1f || normalizedDuration <= 0f) {
-                   _phase = !_phase;
-                }
             
+                
+                if (_phase && normalizedDuration >= 1f) {
+                    _phase = false;
+                }
+                
+                if (!_phase && normalizedDuration <= 0f) {
+                    _phase = true;
+                }
+            }
         }
+
         
         var verticalVelocity = targetMovingSpeed * inputVertical;
         var horizontalVelocity = targetMovingSpeed * inputHorizontal;
@@ -103,7 +95,6 @@ public class Movement : MonoBehaviour  {
         
      
         
-        transform.Rotate(0, 0.4f, 0);
 
         
         
